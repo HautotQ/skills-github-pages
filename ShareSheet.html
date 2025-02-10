@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partager du Texte</title>
+</head>
+<body>
+    <h2>Partager du texte</h2>
+    <textarea id="textToShare" rows="5" cols="50">Contenu à partager</textarea>
+    <button onclick="shareText()">Partager</button>
+
+    <script>
+        function shareText() {
+            const text = document.getElementById("textToShare").value;
+            if (navigator.share) {
+                navigator.share({
+                    text: text
+                }).then(() => console.log("Partage réussi"))
+                .catch(err => console.log("Erreur de partage : ", err));
+            } else {
+                alert("Le partage n'est pas pris en charge sur ce navigateur.");
+            }
+        }
+    </script>
+</body>
+</html>
